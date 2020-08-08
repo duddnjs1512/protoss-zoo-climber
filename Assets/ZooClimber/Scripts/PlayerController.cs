@@ -5,8 +5,8 @@ namespace ZooClimber.Scripts
     [RequireComponent(typeof (PlayerCharacter))]
     public class PlayerController : MonoBehaviour
     {
-        public float minXPos = -10f;
-        public float maxXPos = 10f;
+        public float minXPos = -20f;
+        public float maxXPos = 20f;
         
         enum MoveDirection
         {
