@@ -339,6 +339,7 @@ GameObject:
   - component: {fileID: 793382647}
   - component: {fileID: 793382646}
   - component: {fileID: 793382648}
+  - component: {fileID: 793382649}
   m_Layer: 8
   m_Name: Tilemap
   m_TagString: Untagged
@@ -2139,11 +2140,30 @@ TilemapCollider2D:
   m_Density: 1
   m_Material: {fileID: 6200000, guid: 29ecbe995f725461a888c995d11a0033, type: 2}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+--- !u!251 &793382649
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 793382644}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 180
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1 &986397032
 GameObject:
   m_ObjectHideFlags: 0
@@ -2372,8 +2392,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1953489685
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: -5237074582503671387, guid: ffed41aefe7044b17b4620dcd4ff95a5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
