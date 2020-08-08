@@ -16,7 +16,7 @@ namespace ZooClimber.Scripts
         
         [SerializeField] PlayerCharacter playerCharacter;
 
-        [SerializeField] SpriteRenderer spriteRenderer;
+        [SerializeField] SpriteRenderer formSprite;
         [SerializeField] MoveDirection moveDirection = MoveDirection.Right; 
         [SerializeField] bool isJumped;
         [SerializeField] bool isTransformed;
@@ -43,13 +43,13 @@ namespace ZooClimber.Scripts
                 playerCharacter.IsBlocked && moveDirection == MoveDirection.Left)
             {
                 moveDirection = MoveDirection.Right;
-                spriteRenderer.flipX = false;
+                formSprite.flipX = false;
             }
             else if (transform.position.x > maxXPos - playerCharacter.Collider2D.bounds.extents.x ||
                      playerCharacter.IsBlocked && moveDirection == MoveDirection.Right)
             {
                 moveDirection = MoveDirection.Left;
-                spriteRenderer.flipX = true;
+                formSprite.flipX = true;
             }
         }
 
