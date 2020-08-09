@@ -11,7 +11,6 @@ namespace ZooClimber.Scripts
 
         [SerializeField] float maxSpeed = 10f;
         [SerializeField] float jumpForce = 400f;
-        [SerializeField] float groundCheckDistance = 5;
         [SerializeField] LayerMask groundMask;
         [SerializeField] bool isGrounded;
 
