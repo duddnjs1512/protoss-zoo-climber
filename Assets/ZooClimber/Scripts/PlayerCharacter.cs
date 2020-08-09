@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using ZooClimber.Data;
+using Random = UnityEngine.Random;
 
 namespace ZooClimber.Scripts
 {
@@ -6,12 +9,40 @@ namespace ZooClimber.Scripts
     [RequireComponent(typeof(Collider2D))]
     public class PlayerCharacter : MonoBehaviour
     {
+        public enum Form
+        {
+            Rat,
+            Turtle,
+            Sparrow
+        }
+
         const float EXTRA_WIDTH_MARGIN = 0.1f;
         const float EXTRA_HEIGHT_MARGIN = 0.05f;
+        
+        public readonly int TotalFormLength = Enum.GetNames(typeof(Form)).Length;
+        
+        public Form ActiveForm
+        {
+            get => activeForm;
+            set
+            {
+                activeFormIndex = (int) value;
+                spriteRenderer.sprite = formData[activeFormIndex].sprite;
+                activeForm = value;
+            }
+        }
+        Form activeForm;
+        int activeFormIndex;
 
-        [SerializeField] float maxSpeed = 10f;
-        [SerializeField] float jumpForce = 400f;
+        public LayerMask GroundMask => groundMask;
+
+        [SerializeField] FormData[] formData;
+        [SerializeField] SpriteRenderer spriteRenderer;
         [SerializeField] LayerMask groundMask;
+        [SerializeField] float baseMoveSpeed = 300f;
+        [SerializeField] float jumpForce = 500f;
+
+        public bool IsGrounded => isGrounded;
         [SerializeField] bool isGrounded;
 
         public bool IsBlocked => isBlocked;
@@ -65,7 +96,20 @@ namespace ZooClimber.Scripts
                 rigidbody2d.AddForce(new Vector2(0f, jumpForce));
             }
             
-            rigidbody2d.velocity = new Vector2(horizontalMove * maxSpeed * Time.deltaTime, rigidbody2d.velocity.y);
+            rigidbody2d.velocity = new Vector2(horizontalMove * baseMoveSpeed * formData[activeFormIndex].speed * Time.deltaTime, rigidbody2d.velocity.y);
+        }
+
+        public void RandomTransform()
+        {
+            var oldForm = activeForm;
+            var newFormIndex = Random.Range(0, 3);
+            var newForm = (Form)newFormIndex;
+            if (oldForm == newForm)
+            {
+                newForm = (Form)((newFormIndex + 1) % TotalFormLength);
+            }
+            ActiveForm = newForm;
+            Debug.Log($"Transform from \"{oldForm}\" to \"{newForm}\"");
         }
     }
 }
