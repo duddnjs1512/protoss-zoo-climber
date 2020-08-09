@@ -41,6 +41,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 4134189227
+    locked: 0
+  - name: Foreground
+    uniqueID: 2521911023
+    locked: 0
+  - name: Platforms
+    uniqueID: 3892200901
+    locked: 0
+  - name: Obstacles
+    uniqueID: 3514919769
+    locked: 0
   - name: Character
     uniqueID: 2341477611
     locked: 0
