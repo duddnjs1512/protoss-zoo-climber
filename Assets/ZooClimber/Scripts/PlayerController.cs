@@ -40,13 +40,13 @@ namespace ZooClimber.Scripts
             }
 
             if (transform.position.x < minXPos + playerCharacter.Collider2D.bounds.extents.x ||
-                playerCharacter.IsBlocked && moveDirection == MoveDirection.Left && !playerCharacter.IsGrounded)
+                playerCharacter.IsBlocked && moveDirection == MoveDirection.Left && playerCharacter.IsGrounded)
             {
                 moveDirection = MoveDirection.Right;
                 formSprite.flipX = false;
             }
             else if (transform.position.x > maxXPos - playerCharacter.Collider2D.bounds.extents.x ||
-                     playerCharacter.IsBlocked && moveDirection == MoveDirection.Right && !playerCharacter.IsGrounded)
+                     playerCharacter.IsBlocked && moveDirection == MoveDirection.Right && playerCharacter.IsGrounded)
             {
                 moveDirection = MoveDirection.Left;
                 formSprite.flipX = true;

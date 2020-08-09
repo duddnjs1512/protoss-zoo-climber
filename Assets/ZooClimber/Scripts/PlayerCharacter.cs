@@ -39,6 +39,7 @@ namespace ZooClimber.Scripts
         [SerializeField] FormData[] formData;
         [SerializeField] SpriteRenderer spriteRenderer;
         [SerializeField] LayerMask groundMask;
+        [SerializeField] LayerMask wallMask;
         [SerializeField] float baseMoveSpeed = 300f;
         [SerializeField] float jumpForce = 500f;
 
@@ -76,7 +77,7 @@ namespace ZooClimber.Scripts
             Debug.DrawRay(collider2d.bounds.center, Vector2.down * (collider2d.bounds.extents.y + EXTRA_HEIGHT_MARGIN), rayColor);
 
             var moveDirection = new Vector2(horizontalMove, 0f);
-            var forwardRaycastHit = Physics2D.Raycast(collider2d.bounds.center, moveDirection, collider2d.bounds.extents.x + EXTRA_HEIGHT_MARGIN, groundMask);
+            var forwardRaycastHit = Physics2D.Raycast(collider2d.bounds.center, moveDirection, collider2d.bounds.extents.x + EXTRA_HEIGHT_MARGIN, wallMask);
             Color forwardRayColor;
             if (forwardRaycastHit.collider != null)
             {
