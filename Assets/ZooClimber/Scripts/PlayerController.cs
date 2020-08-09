@@ -18,7 +18,7 @@ namespace ZooClimber.Scripts
 
         [SerializeField] SpriteRenderer formSprite;
         [SerializeField] MoveDirection moveDirection = MoveDirection.Right; 
-        [SerializeField] bool isJumpButtonTapped;
+        [SerializeField] bool isJumpButtonClicked;
         [SerializeField] bool isTransformed;
         [SerializeField] bool isFreeMove = false;
 
@@ -29,9 +29,9 @@ namespace ZooClimber.Scripts
 
         void Update()
         {
-            if (!isJumpButtonTapped)
+            if (!isJumpButtonClicked)
             {
-                isJumpButtonTapped = Input.GetButtonDown("Jump");
+                isJumpButtonClicked = Input.GetButtonDown("Jump");
             }
 
             if (!isTransformed)
@@ -56,8 +56,8 @@ namespace ZooClimber.Scripts
         void FixedUpdate()
         {
             var horizontalMove = isFreeMove ? Input.GetAxis("Horizontal") : (float)moveDirection;
-            playerCharacter.Move(horizontalMove, isJumpButtonTapped);
-            isJumpButtonTapped = false;
+            playerCharacter.Move(horizontalMove, isJumpButtonClicked);
+            isJumpButtonClicked = false;
         }
     }
 }
