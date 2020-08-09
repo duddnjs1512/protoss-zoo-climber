@@ -43,6 +43,8 @@ namespace ZooClimber.Scripts
         [SerializeField] float baseMoveSpeed = 300f;
         [SerializeField] float jumpForce = 500f;
 
+        public float Speed => formData[activeFormIndex].speed;
+
         public bool IsGrounded => isGrounded;
         [SerializeField] bool isGrounded;
 
