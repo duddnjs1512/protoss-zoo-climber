@@ -19,8 +19,8 @@ namespace ZooClimber.Scripts
         [SerializeField] SpriteRenderer formSprite;
         [SerializeField] MoveDirection moveDirection = MoveDirection.Right; 
         [SerializeField] bool isJumpButtonClicked;
-        [SerializeField] bool isTransformed;
-        [SerializeField] bool isFreeMove = false;
+        [SerializeField] bool isTransformClicked;
+        [SerializeField] bool isFreeMove;
 
         void Awake()
         {
@@ -33,10 +33,10 @@ namespace ZooClimber.Scripts
             {
                 isJumpButtonClicked = Input.GetButtonDown("Jump");
             }
-
-            if (!isTransformed)
+            
+            if (!isTransformClicked)
             {
-                isTransformed = Input.GetButtonDown("Transform");
+                isTransformClicked = Input.GetButtonDown("Transform");
             }
 
             if (transform.position.x < minXPos + playerCharacter.Collider2D.bounds.extents.x ||
