@@ -39,6 +39,13 @@ namespace ZooClimber.Scripts
         }
         [SerializeField] PlayerCharacter playerCharacter;
 
+        // Masks
+        public LayerMask GroundMask => groundMask;
+        [SerializeField] LayerMask groundMask;
+        
+        public LayerMask WallMask => wallMask;
+        [SerializeField] LayerMask wallMask;
+
         void Init()
         {
             if (playerCharacter == null)

@@ -3,31 +3,21 @@
 namespace ZooClimber.Scripts
 {
     [RequireComponent(typeof (PlayerCharacter))]
-    public class PlayerController : MonoBehaviour
+    public class PlayerController : CharacterController
     {
-        public float minXPos = -20f;
-        public float maxXPos = 20f;
-        
-        enum MoveDirection
-        {
-            Left = -1,
-            Right = 1
-        }
-        
-        [SerializeField] PlayerCharacter playerCharacter;
-
-        [SerializeField] SpriteRenderer formSprite;
-        [SerializeField] MoveDirection moveDirection = MoveDirection.Right; 
         [SerializeField] bool isJumpButtonClicked;
         [SerializeField] bool isTransformClicked;
         [SerializeField] bool isFreeMove;
 
-        void Awake()
+        PlayerCharacter playerCharacter;
+        
+        void Start()
         {
-            playerCharacter = GetComponent<PlayerCharacter>();
+            playerCharacter = character as PlayerCharacter;
+            Debug.Assert(playerCharacter != null);
         }
 
-        void Update()
+        protected override void UpdateController()
         {
             if (!isJumpButtonClicked)
             {
@@ -39,24 +29,13 @@ namespace ZooClimber.Scripts
                 isTransformClicked = Input.GetButtonDown("Transform");
             }
 
-            if (transform.position.x < minXPos + playerCharacter.Collider2D.bounds.extents.x ||
-                playerCharacter.IsBlocked && moveDirection == MoveDirection.Left && playerCharacter.IsGrounded)
-            {
-                moveDirection = MoveDirection.Right;
-                formSprite.flipX = false;
-            }
-            else if (transform.position.x > maxXPos - playerCharacter.Collider2D.bounds.extents.x ||
-                     playerCharacter.IsBlocked && moveDirection == MoveDirection.Right && playerCharacter.IsGrounded)
-            {
-                moveDirection = MoveDirection.Left;
-                formSprite.flipX = true;
-            }
+            base.UpdateController();
         }
 
-        void FixedUpdate()
+        protected override void UpdateCharacter()
         {
             var horizontalMove = isFreeMove ? Input.GetAxis("Horizontal") : (float)moveDirection;
-            playerCharacter.Move(horizontalMove, isJumpButtonClicked);
+            character.Move(horizontalMove, isJumpButtonClicked);
             isJumpButtonClicked = false;
 
             if (isTransformClicked)
