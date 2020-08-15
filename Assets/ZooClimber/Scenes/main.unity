@@ -495,7 +495,7 @@ MonoBehaviour:
   blinkDuration: 0.1
   spriteRenderer: {fileID: 256404970}
   baseMoveSpeed: 100
-  jumpForce: 300
+  jumpForce: 400
   formData: {fileID: 11400000, guid: 5fae4592f0ac44b26ab9deeea3a32e70, type: 2}
   isHitCounting: 0
   hitCounter: 0
@@ -613,7 +613,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5034551232686106604, guid: 487bdbaa0b4d24093b0b2119dca131dc, type: 3}
       propertyPath: m_SortingLayer
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5034551232686106605, guid: 487bdbaa0b4d24093b0b2119dca131dc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -683,7 +683,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5034551232686106604, guid: 487bdbaa0b4d24093b0b2119dca131dc, type: 3}
       propertyPath: m_SortingLayer
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5034551232686106605, guid: 487bdbaa0b4d24093b0b2119dca131dc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2116,7 +2116,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5034551232686106604, guid: 487bdbaa0b4d24093b0b2119dca131dc, type: 3}
       propertyPath: m_SortingLayer
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5034551232686106605, guid: 487bdbaa0b4d24093b0b2119dca131dc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5413,7 +5413,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCharacter: {fileID: 256404968}
-  followOffset: {x: 2.94, y: 1.65}
+  followOffset: {x: 0, y: 9}
   threshold: {x: 0, y: 0}
   speed: 10
 --- !u!1 &1106648034
@@ -5811,7 +5811,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5034551232686106604, guid: 487bdbaa0b4d24093b0b2119dca131dc, type: 3}
       propertyPath: m_SortingLayer
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5034551232686106605, guid: 487bdbaa0b4d24093b0b2119dca131dc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5881,7 +5881,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5034551232686106604, guid: 487bdbaa0b4d24093b0b2119dca131dc, type: 3}
       propertyPath: m_SortingLayer
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5034551232686106605, guid: 487bdbaa0b4d24093b0b2119dca131dc, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6094,7 +6094,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5034551232686106604, guid: 487bdbaa0b4d24093b0b2119dca131dc, type: 3}
       propertyPath: m_SortingLayer
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5034551232686106605, guid: 487bdbaa0b4d24093b0b2119dca131dc, type: 3}
       propertyPath: m_LocalPosition.x

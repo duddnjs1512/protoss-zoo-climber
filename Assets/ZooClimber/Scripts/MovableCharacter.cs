@@ -37,11 +37,14 @@ namespace ZooClimber.Scripts
         
         [SerializeField] bool isBlinking;
         [SerializeField] float blinkCounter;
+        [SerializeField] float maxSpeed;
         
         void Awake()
         {
             rigidbody2d = GetComponent<Rigidbody2D>();
             collider2d = GetComponent<Collider2D>();
+            
+            maxSpeed = baseMoveSpeed * formData.speed;
         }
 
         public void Move(float horizontalMove, bool isJumped, bool isHit, Vector3 hitSourcePos, float hitForce)
@@ -56,6 +59,7 @@ namespace ZooClimber.Scripts
             else
             {
                 rayColor = Color.red;
+                isGrounded = false;
             }
             Debug.DrawRay(collider2d.bounds.center, Vector2.down * (collider2d.bounds.extents.y + EXTRA_HEIGHT_MARGIN), rayColor);
 
@@ -77,7 +81,12 @@ namespace ZooClimber.Scripts
             if (isGrounded && isJumped)
             {
                 isGrounded = false;
+                rigidbody2d.velocity = Vector2.zero;
                 rigidbody2d.AddForce(new Vector2(0f, jumpForce));
+                if (Mathf.Abs(rigidbody2d.velocity.y) > maxSpeed)
+                {
+                    rigidbody2d.velocity = new Vector2(rigidbody2d.velocity.x, maxSpeed);
+                }
             }
 
             if (isHit)
@@ -123,14 +132,13 @@ namespace ZooClimber.Scripts
                 }
             }
 
-            var maxSpeed = baseMoveSpeed * formData.speed;
             if (Mathf.Abs(rigidbody2d.velocity.x) < maxSpeed)
             {
                 rigidbody2d.AddForce(new Vector2(horizontalMove * maxSpeed * Time.deltaTime, rigidbody2d.velocity.y));
             }
             else
             {
-                rigidbody2d.velocity = new Vector2(horizontalMove * maxSpeed * Time.deltaTime, rigidbody2d.velocity.y);
+                rigidbody2d.velocity = new Vector2(horizontalMove * maxSpeed, rigidbody2d.velocity.y);
             }
         }
     }
