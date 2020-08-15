@@ -15,7 +15,7 @@ namespace ZooClimber.Scripts
             All = 3
         }
 
-        readonly int TOTAL_PLAYER_FORM_LENGTH = Enum.GetNames(typeof(PlayerForm)).Length;
+        readonly int TOTAL_PLAYER_FORM_LENGTH = Enum.GetNames(typeof(PlayerForm)).Length - 1;
         
         public PlayerForm ActivePlayerForm
         {

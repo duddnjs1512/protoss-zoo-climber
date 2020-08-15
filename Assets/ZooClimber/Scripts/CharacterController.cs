@@ -4,13 +4,15 @@ namespace ZooClimber.Scripts
 {
     public class CharacterController : MonoBehaviour
     {
-        protected enum FaceDirection
+        public enum FaceDirection
         {
             Left = -1,
             Right = 1
         }
         
         [SerializeField] SpriteRenderer formSprite;
+
+        public Vector2 FaceDirectionToVector => faceDirection == FaceDirection.Left ? Vector2.left : Vector2.right;
         [SerializeField] protected FaceDirection faceDirection = FaceDirection.Right;
         
         protected MovableCharacter movable;

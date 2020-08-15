@@ -13,6 +13,8 @@ namespace ZooClimber.Scripts
     
     public class GameManager : MonoBehaviour
     {
+        public const float WORLD_MIN_POSITION_X = -20f;
+        public const float WORLD_MAX_POSITION_X = 20f;
         public const string SPIKE_LAYER_NAME = "Spike";
         
         public static GameManager Instance
