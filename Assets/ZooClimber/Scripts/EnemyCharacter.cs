@@ -36,7 +36,8 @@ namespace ZooClimber.Scripts
             Debug.Log($"\"{playerController.gameObject.name}\" collided with \"{gameObject.name}\"");
             playerController.Hit(transform.position, hitForce);
 
-            if (playerController.PlayerCharacter.ActivePlayerForm == counterForm)
+            if (counterForm == PlayerCharacter.PlayerForm.All || 
+                counterForm == playerController.PlayerCharacter.ActivePlayerForm)
             {
                 GameManager.Instance.GameOver();
             }

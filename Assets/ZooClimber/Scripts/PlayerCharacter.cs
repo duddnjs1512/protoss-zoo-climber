@@ -9,9 +9,10 @@ namespace ZooClimber.Scripts
     {
         public enum PlayerForm
         {
-            Rat,
-            Turtle,
-            Sparrow
+            Rat = 0,
+            Turtle = 1,
+            Sparrow = 2,
+            All = 3
         }
 
         readonly int TOTAL_PLAYER_FORM_LENGTH = Enum.GetNames(typeof(PlayerForm)).Length;
