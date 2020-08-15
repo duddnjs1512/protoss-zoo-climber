@@ -14,6 +14,9 @@ namespace ZooClimber.Scripts
         public bool IsGrounded => isGrounded;
         [SerializeField] bool isGrounded;
 
+        public bool IsNextGroundExpected => isNextGroundExpected;
+        [SerializeField] bool isNextGroundExpected;
+
         public bool IsBlocked => isBlocked;
         [SerializeField] bool isBlocked;
 
@@ -62,6 +65,21 @@ namespace ZooClimber.Scripts
                 isGrounded = false;
             }
             Debug.DrawRay(collider2d.bounds.center, Vector2.down * (collider2d.bounds.extents.y + EXTRA_HEIGHT_MARGIN), rayColor);
+
+            var expectDirection = new Vector2(horizontalMove, -1f);
+            var nextGroundRaycastHit = Physics2D.Raycast(collider2d.bounds.center, expectDirection, collider2d.bounds.extents.x + EXTRA_WIDTH_MARGIN, GameManager.Instance.GroundMask);
+            Color nextGroundRayColor;
+            if (nextGroundRaycastHit.collider != null)
+            {
+                nextGroundRayColor = Color.green;
+                isNextGroundExpected = true;
+            }
+            else
+            {
+                nextGroundRayColor = Color.red;
+                isNextGroundExpected = false;
+            }
+            Debug.DrawRay(collider2d.bounds.center, expectDirection * (collider2d.bounds.extents.x + EXTRA_WIDTH_MARGIN), nextGroundRayColor);
 
             var moveDirection = new Vector2(horizontalMove, 0f);
             var forwardRaycastHit = Physics2D.Raycast(collider2d.bounds.center, moveDirection, collider2d.bounds.extents.x + EXTRA_WIDTH_MARGIN, GameManager.Instance.WallMask);
