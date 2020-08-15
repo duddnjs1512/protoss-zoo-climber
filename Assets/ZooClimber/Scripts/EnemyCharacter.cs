@@ -4,6 +4,7 @@ namespace ZooClimber.Scripts
 {
     public class EnemyCharacter : MovableCharacter
     {
+        [SerializeField] PlayerCharacter.PlayerForm counterForm;
         [SerializeField] float hitForce = 5;
         
         private void OnCollisionEnter2D(Collision2D other)
@@ -34,6 +35,11 @@ namespace ZooClimber.Scripts
         {
             Debug.Log($"\"{playerController.gameObject.name}\" collided with \"{gameObject.name}\"");
             playerController.Hit(transform.position, hitForce);
+
+            if (playerController.PlayerCharacter.ActivePlayerForm == counterForm)
+            {
+                GameManager.Instance.GameOver();
+            }
         }
     }
 }

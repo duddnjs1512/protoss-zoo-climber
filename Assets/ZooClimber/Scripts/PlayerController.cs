@@ -13,6 +13,7 @@ namespace ZooClimber.Scripts
         float hitForce;
         Vector3 hitSourcePos;
 
+        public PlayerCharacter PlayerCharacter => playerCharacter;
         PlayerCharacter playerCharacter;
         
         void Start()
