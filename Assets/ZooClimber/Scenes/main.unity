@@ -494,8 +494,8 @@ MonoBehaviour:
   isGrounded: 0
   isNextGroundExpected: 0
   isBlocked: 0
-  blinkDuration: 0.1
   spriteRenderer: {fileID: 256404970}
+  blinkDuration: 0.1
   baseMoveSpeed: 100
   jumpForce: 400
   formData: {fileID: 11400000, guid: 5fae4592f0ac44b26ab9deeea3a32e70, type: 2}
