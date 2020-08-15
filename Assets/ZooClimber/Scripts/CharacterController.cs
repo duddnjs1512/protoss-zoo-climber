@@ -13,16 +13,16 @@ namespace ZooClimber.Scripts
         [SerializeField] SpriteRenderer formSprite;
         [SerializeField] protected MoveDirection moveDirection = MoveDirection.Right;
         
-        protected MovableCharacter character;
+        protected MovableCharacter movable;
 
         bool isPlayer;
         bool isEnemy;
         
         void Awake()
         {
-            character = GetComponent<MovableCharacter>();
-            isPlayer = character is PlayerCharacter;
-            isEnemy = character is EnemyCharacter;
+            movable = GetComponent<MovableCharacter>();
+            isPlayer = movable is PlayerCharacter;
+            isEnemy = !isPlayer;
         }
         
         void Update()
@@ -37,17 +37,20 @@ namespace ZooClimber.Scripts
 
         protected virtual void UpdateController()
         {
-            if (CanFlip() && moveDirection == MoveDirection.Left && character.IsGrounded)
+            if (movable)
             {
-                character.Rigidbody2D.velocity = Vector2.zero;
-                moveDirection = MoveDirection.Right;
-                formSprite.flipX = false;
-            }
-            else if (CanFlip() && moveDirection == MoveDirection.Right && character.IsGrounded)
-            {
-                character.Rigidbody2D.velocity = Vector2.zero;
-                moveDirection = MoveDirection.Left;
-                formSprite.flipX = true;
+                if (CanFlip() && moveDirection == MoveDirection.Left && movable.IsGrounded)
+                {
+                    movable.Rigidbody2D.velocity = Vector2.zero;
+                    moveDirection = MoveDirection.Right;
+                    formSprite.flipX = false;
+                }
+                else if (CanFlip() && moveDirection == MoveDirection.Right && movable.IsGrounded)
+                {
+                    movable.Rigidbody2D.velocity = Vector2.zero;
+                    moveDirection = MoveDirection.Left;
+                    formSprite.flipX = true;
+                }
             }
         }
 
@@ -55,12 +58,12 @@ namespace ZooClimber.Scripts
         {
             if (isPlayer)
             {
-                return character.IsBlocked;
+                return movable.IsBlocked;
             }
 
             if (isEnemy)
             {
-                return character.IsBlocked || !character.IsNextGroundExpected;
+                return movable.IsBlocked || !movable.IsNextGroundExpected;
             }
 
             return false;
@@ -68,7 +71,10 @@ namespace ZooClimber.Scripts
         
         protected virtual void UpdateCharacter()
         {
-            character.Move((float)moveDirection, false, false, Vector3.zero, 0f);
+            if (movable)
+            {
+                movable.Move((float)moveDirection, false, false, Vector3.zero, 0f);
+            }
         }
     }
 }

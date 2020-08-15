@@ -18,7 +18,7 @@ namespace ZooClimber.Scripts
         
         void Start()
         {
-            playerCharacter = character as PlayerCharacter;
+            playerCharacter = movable as PlayerCharacter;
             Debug.Assert(playerCharacter != null);
         }
 
@@ -47,7 +47,7 @@ namespace ZooClimber.Scripts
         protected override void UpdateCharacter()
         {
             var horizontalMove = isFreeMove ? Input.GetAxis("Horizontal") : (float)moveDirection;
-            character.Move(horizontalMove, isJumpButtonClicked, isHit, hitSourcePos, hitForce);
+            movable.Move(horizontalMove, isJumpButtonClicked, isHit, hitSourcePos, hitForce);
             isJumpButtonClicked = false;
             isHit = false;
 

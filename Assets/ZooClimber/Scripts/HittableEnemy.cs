@@ -2,7 +2,7 @@
 
 namespace ZooClimber.Scripts
 {
-    public class EnemyCharacter : MovableCharacter
+    public class HittableEnemy : MonoBehaviour
     {
         [SerializeField] PlayerCharacter.PlayerForm counterForm;
         [SerializeField] float hitForce = 5;
