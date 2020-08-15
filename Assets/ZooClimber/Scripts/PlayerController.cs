@@ -8,6 +8,10 @@ namespace ZooClimber.Scripts
         [SerializeField] bool isJumpButtonClicked;
         [SerializeField] bool isTransformClicked;
         [SerializeField] bool isFreeMove;
+        [SerializeField] bool isHit;
+
+        float hitForce;
+        Vector3 hitSourcePos;
 
         PlayerCharacter playerCharacter;
         
@@ -15,6 +19,13 @@ namespace ZooClimber.Scripts
         {
             playerCharacter = character as PlayerCharacter;
             Debug.Assert(playerCharacter != null);
+        }
+
+        public void Hit(Vector3 hitSourcePos, float hitForce)
+        {
+            isHit = true;
+            this.hitForce = hitForce;
+            this.hitSourcePos = hitSourcePos;
         }
 
         protected override void UpdateController()
@@ -35,8 +46,9 @@ namespace ZooClimber.Scripts
         protected override void UpdateCharacter()
         {
             var horizontalMove = isFreeMove ? Input.GetAxis("Horizontal") : (float)moveDirection;
-            character.Move(horizontalMove, isJumpButtonClicked);
+            character.Move(horizontalMove, isJumpButtonClicked, isHit, hitSourcePos, hitForce);
             isJumpButtonClicked = false;
+            isHit = false;
 
             if (isTransformClicked)
             {

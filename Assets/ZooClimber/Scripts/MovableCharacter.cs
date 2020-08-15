@@ -7,6 +7,7 @@ namespace ZooClimber.Scripts
     [RequireComponent(typeof(Collider2D))]
     public class MovableCharacter : MonoBehaviour
     {
+        const float DEFAULT_HIT_TIME = 3.0f;
         const float EXTRA_WIDTH_MARGIN = 0.1f;
         const float EXTRA_HEIGHT_MARGIN = 0.05f;
         
@@ -24,18 +25,21 @@ namespace ZooClimber.Scripts
         public Collider2D Collider2D => collider2d;
         Collider2D collider2d;
         
-        [SerializeField] float baseMoveSpeed = 300f;
-        [SerializeField] float jumpForce = 500f;
+        [SerializeField] float baseMoveSpeed = 100f;
+        [SerializeField] float jumpForce = 300f;
 
         [SerializeField] protected FormData formData;
 
+        [SerializeField] bool isHitCounting;
+        [SerializeField] float hitCounter;
+        
         void Awake()
         {
             rigidbody2d = GetComponent<Rigidbody2D>();
             collider2d = GetComponent<Collider2D>();
         }
 
-        public void Move(float horizontalMove, bool isJumped)
+        public void Move(float horizontalMove, bool isJumped, bool isHit, Vector3 hitSourcePos, float hitForce)
         {
             var raycastHit = Physics2D.Raycast(collider2d.bounds.center, Vector2.down, collider2d.bounds.extents.y + EXTRA_HEIGHT_MARGIN, GameManager.Instance.GroundMask);
             Color rayColor;
@@ -51,7 +55,7 @@ namespace ZooClimber.Scripts
             Debug.DrawRay(collider2d.bounds.center, Vector2.down * (collider2d.bounds.extents.y + EXTRA_HEIGHT_MARGIN), rayColor);
 
             var moveDirection = new Vector2(horizontalMove, 0f);
-            var forwardRaycastHit = Physics2D.Raycast(collider2d.bounds.center, moveDirection, collider2d.bounds.extents.x + EXTRA_HEIGHT_MARGIN, GameManager.Instance.WallMask);
+            var forwardRaycastHit = Physics2D.Raycast(collider2d.bounds.center, moveDirection, collider2d.bounds.extents.x + EXTRA_WIDTH_MARGIN, GameManager.Instance.WallMask);
             Color forwardRayColor;
             if (forwardRaycastHit.collider != null)
             {
@@ -70,8 +74,40 @@ namespace ZooClimber.Scripts
                 isGrounded = false;
                 rigidbody2d.AddForce(new Vector2(0f, jumpForce));
             }
+
+            if (isHit)
+            {
+                if (!isHitCounting)
+                {
+                    rigidbody2d.velocity = Vector2.zero;
+                    
+                    var pushDirection = Vector3.Normalize(transform.position - hitSourcePos) * hitForce;
+                    rigidbody2d.AddForce(pushDirection, ForceMode2D.Impulse);
+                    
+                    isHitCounting = true;
+                }
+            }
             
-            rigidbody2d.velocity = new Vector2(horizontalMove * baseMoveSpeed * formData.speed * Time.deltaTime, rigidbody2d.velocity.y);
+            if (isHitCounting)
+            {
+                hitCounter += Time.deltaTime;
+                
+                if (hitCounter >= DEFAULT_HIT_TIME)
+                {
+                    hitCounter = 0f;
+                    isHitCounting = false;
+                }
+            }
+
+            var maxSpeed = baseMoveSpeed * formData.speed;
+            if (Mathf.Abs(rigidbody2d.velocity.x) < maxSpeed)
+            {
+                rigidbody2d.AddForce(new Vector2(horizontalMove * maxSpeed * Time.deltaTime, rigidbody2d.velocity.y));
+            }
+            else
+            {
+                rigidbody2d.velocity = new Vector2(horizontalMove * maxSpeed * Time.deltaTime, rigidbody2d.velocity.y);
+            }
         }
     }
 }
