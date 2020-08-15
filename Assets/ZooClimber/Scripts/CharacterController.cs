@@ -32,16 +32,21 @@ namespace ZooClimber.Scripts
 
         protected virtual void UpdateController()
         {
-            if (character.IsBlocked && moveDirection == MoveDirection.Left && character.IsGrounded)
+            if (CanFlip() && moveDirection == MoveDirection.Left && character.IsGrounded)
             {
                 moveDirection = MoveDirection.Right;
                 formSprite.flipX = false;
             }
-            else if (character.IsBlocked && moveDirection == MoveDirection.Right && character.IsGrounded)
+            else if (CanFlip() && moveDirection == MoveDirection.Right && character.IsGrounded)
             {
                 moveDirection = MoveDirection.Left;
                 formSprite.flipX = true;
             }
+        }
+
+        bool CanFlip()
+        {
+            return character.IsBlocked;
         }
         
         protected virtual void UpdateCharacter()
