@@ -46,7 +46,7 @@ namespace ZooClimber.Scripts
 
         protected override void UpdateCharacter()
         {
-            var horizontalMove = isFreeMove ? Input.GetAxis("Horizontal") : (float)moveDirection;
+            var horizontalMove = isFreeMove ? Input.GetAxis("Horizontal") : (float)faceDirection;
             movable.Move(horizontalMove, isJumpButtonClicked, isHit, hitSourcePos, hitForce);
             isJumpButtonClicked = false;
             isHit = false;

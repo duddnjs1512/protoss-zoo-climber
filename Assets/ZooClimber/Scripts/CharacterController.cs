@@ -4,14 +4,14 @@ namespace ZooClimber.Scripts
 {
     public class CharacterController : MonoBehaviour
     {
-        protected enum MoveDirection
+        protected enum FaceDirection
         {
             Left = -1,
             Right = 1
         }
         
         [SerializeField] SpriteRenderer formSprite;
-        [SerializeField] protected MoveDirection moveDirection = MoveDirection.Right;
+        [SerializeField] protected FaceDirection faceDirection = FaceDirection.Right;
         
         protected MovableCharacter movable;
 
@@ -39,16 +39,16 @@ namespace ZooClimber.Scripts
         {
             if (movable)
             {
-                if (CanFlip() && moveDirection == MoveDirection.Left && movable.IsGrounded)
+                if (CanFlip() && faceDirection == FaceDirection.Left && movable.IsGrounded)
                 {
                     movable.Rigidbody2D.velocity = Vector2.zero;
-                    moveDirection = MoveDirection.Right;
+                    faceDirection = FaceDirection.Right;
                     formSprite.flipX = false;
                 }
-                else if (CanFlip() && moveDirection == MoveDirection.Right && movable.IsGrounded)
+                else if (CanFlip() && faceDirection == FaceDirection.Right && movable.IsGrounded)
                 {
                     movable.Rigidbody2D.velocity = Vector2.zero;
-                    moveDirection = MoveDirection.Left;
+                    faceDirection = FaceDirection.Left;
                     formSprite.flipX = true;
                 }
             }
@@ -73,7 +73,7 @@ namespace ZooClimber.Scripts
         {
             if (movable)
             {
-                movable.Move((float)moveDirection, false, false, Vector3.zero, 0f);
+                movable.Move((float)faceDirection, false, false, Vector3.zero, 0f);
             }
         }
     }
