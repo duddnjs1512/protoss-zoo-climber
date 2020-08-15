@@ -492,11 +492,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isGrounded: 0
   isBlocked: 0
+  blinkDuration: 0.1
+  spriteRenderer: {fileID: 256404970}
   baseMoveSpeed: 100
   jumpForce: 300
   formData: {fileID: 11400000, guid: 5fae4592f0ac44b26ab9deeea3a32e70, type: 2}
   isHitCounting: 0
   hitCounter: 0
+  isBlinking: 0
+  blinkCounter: 0
   playerFormData:
   - {fileID: 11400000, guid: 5fae4592f0ac44b26ab9deeea3a32e70, type: 2}
   - {fileID: 11400000, guid: acc0573086bb24b349b47a9436898d1e, type: 2}
@@ -514,8 +518,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7c1a2223b09a4317ab36a10b7208e65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minXPos: -20
-  maxXPos: 20
   formSprite: {fileID: 256404970}
   moveDirection: -1
   isJumpButtonClicked: 0
@@ -5740,11 +5742,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isGrounded: 0
   isBlocked: 0
+  blinkDuration: 0.2
+  spriteRenderer: {fileID: 1353797387}
   baseMoveSpeed: 100
   jumpForce: 300
   formData: {fileID: 11400000, guid: 5779bcd095ca24a8885c29d57c0ad573, type: 2}
   isHitCounting: 0
   hitCounter: 0
+  isBlinking: 0
+  blinkCounter: 0
   hitForce: 5
 --- !u!114 &1353797390
 MonoBehaviour:
@@ -5758,8 +5764,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22c9e664661a44a1db1111bab40defb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minXPos: -20
-  maxXPos: 20
   formSprite: {fileID: 1353797387}
   moveDirection: 1
 --- !u!1 &1503006873

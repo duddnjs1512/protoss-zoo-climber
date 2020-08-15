@@ -8,6 +8,16 @@ namespace ZooClimber.Scripts
         
         private void OnCollisionEnter2D(Collision2D other)
         {
+            TryHitPlayer(other);
+        }
+
+        private void OnCollisionStay2D(Collision2D other)
+        {
+            TryHitPlayer(other);
+        }
+
+        void TryHitPlayer(Collision2D other)
+        {
             if (other == null || !other.gameObject)
             {
                 return;

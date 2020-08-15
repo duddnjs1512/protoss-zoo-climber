@@ -8,7 +8,7 @@ namespace ZooClimber.Scripts
     public class MovableCharacter : MonoBehaviour
     {
         const float DEFAULT_HIT_TIME = 3.0f;
-        const float EXTRA_WIDTH_MARGIN = 0.1f;
+        const float EXTRA_WIDTH_MARGIN = 0.2f;
         const float EXTRA_HEIGHT_MARGIN = 0.05f;
         
         public bool IsGrounded => isGrounded;
@@ -24,7 +24,9 @@ namespace ZooClimber.Scripts
 
         public Collider2D Collider2D => collider2d;
         Collider2D collider2d;
-        
+
+        [SerializeField] float blinkDuration = 0.1f;
+        [SerializeField] SpriteRenderer spriteRenderer;
         [SerializeField] float baseMoveSpeed = 100f;
         [SerializeField] float jumpForce = 300f;
 
@@ -32,6 +34,9 @@ namespace ZooClimber.Scripts
 
         [SerializeField] bool isHitCounting;
         [SerializeField] float hitCounter;
+        
+        [SerializeField] bool isBlinking;
+        [SerializeField] float blinkCounter;
         
         void Awake()
         {
@@ -92,8 +97,27 @@ namespace ZooClimber.Scripts
             {
                 hitCounter += Time.deltaTime;
                 
+                if (!isBlinking)
+                {
+                    spriteRenderer.enabled = false;
+                    isBlinking = true;
+                }
+
+                if (isBlinking)
+                {
+                    blinkCounter += Time.deltaTime;
+                    
+                    if (blinkCounter > blinkDuration)
+                    {
+                        spriteRenderer.enabled = true;
+                        blinkCounter = 0f;
+                        isBlinking = false;
+                    }
+                }
+                
                 if (hitCounter >= DEFAULT_HIT_TIME)
                 {
+                    spriteRenderer.enabled = true;
                     hitCounter = 0f;
                     isHitCounting = false;
                 }
