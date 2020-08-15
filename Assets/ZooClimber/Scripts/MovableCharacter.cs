@@ -28,8 +28,8 @@ namespace ZooClimber.Scripts
         public Collider2D Collider2D => collider2d;
         Collider2D collider2d;
 
+        [SerializeField] protected SpriteRenderer spriteRenderer;
         [SerializeField] float blinkDuration = 0.1f;
-        [SerializeField] SpriteRenderer spriteRenderer;
         [SerializeField] float baseMoveSpeed = 100f;
         [SerializeField] float jumpForce = 300f;
 

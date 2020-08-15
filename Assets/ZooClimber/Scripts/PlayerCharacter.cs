@@ -31,7 +31,6 @@ namespace ZooClimber.Scripts
         int activeFormIndex;
         
         [SerializeField] FormData[] playerFormData;
-        [SerializeField] SpriteRenderer spriteRenderer;
         
         public void RandomTransform()
         {
