@@ -61,6 +61,8 @@ namespace ZooClimber.Scripts
 
             var player = Instantiate(playerPrefab, startPos, Quaternion.identity);
             player.transform.position = startPos;
+
+            GameManager.Instance.Bind();
         }
     }
 }

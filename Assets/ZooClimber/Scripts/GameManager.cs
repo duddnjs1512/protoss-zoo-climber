@@ -48,14 +48,22 @@ namespace ZooClimber.Scripts
         public LayerMask WallMask => wallMask;
         [SerializeField] LayerMask wallMask;
 
-        void Init()
+        public void Bind()
         {
             if (playerCharacter == null)
             {
                 playerCharacter = FindObjectOfType<PlayerCharacter>();
                 Debug.Assert(playerCharacter != null);
             }
-            
+        }
+
+        void Awake()
+        {
+            Init();
+        }
+
+        void Init()
+        {
             DontDestroyOnLoad(gameObject);
         }
 
