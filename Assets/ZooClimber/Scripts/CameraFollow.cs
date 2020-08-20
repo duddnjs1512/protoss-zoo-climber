@@ -4,11 +4,12 @@ namespace ZooClimber.Scripts
 {
     public class CameraFollow : MonoBehaviour
     {
-        [SerializeField] PlayerCharacter playerCharacter;
         [SerializeField] Vector2 followOffset;
         [SerializeField] Vector2 threshold;
         [SerializeField] float speed;
-        
+
+        [SerializeField] PlayerCharacter playerCharacter;
+
         void Start()
         {
             threshold = CalculateThreshold();
@@ -16,6 +17,12 @@ namespace ZooClimber.Scripts
 
         void FixedUpdate()
         {
+            if (playerCharacter == null)
+            {
+                playerCharacter = GameObject.FindGameObjectWithTag("Player")?.GetComponent<PlayerCharacter>();
+                return;
+            }
+            
             var followObjectPos = playerCharacter.transform.position;
             var xDifference = Vector2.Distance(Vector2.right * transform.position.x, Vector2.right * followObjectPos.x);
             var yDifference = Vector2.Distance(Vector2.up * transform.position.y, Vector2.up * followObjectPos.y);

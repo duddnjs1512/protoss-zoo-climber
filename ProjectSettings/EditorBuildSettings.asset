@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/ZooClimber/Scenes/main.unity
+    guid: e11bd33f5732b47d49b1f757eb6cff6a
+  - enabled: 1
     path: Assets/ZooClimber/Scenes/map.unity
     guid: dfdafc59805bfea42a664d6a4b6f85e9
   m_configObjects: {}
