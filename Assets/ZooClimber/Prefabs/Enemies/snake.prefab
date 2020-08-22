@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8250884677714049385}
   - component: {fileID: 3008505755279496880}
   - component: {fileID: 941841485227875745}
+  - component: {fileID: 4262536302563803169}
   m_Layer: 0
   m_Name: snake
   m_TagString: Untagged
@@ -74,7 +75,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1953489685
-  m_SortingLayer: 4
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 023a71e96d7be403ca8099a463639195, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -121,7 +122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   formSprite: {fileID: 8250884677714049391}
-  moveDirection: 1
+  faceDirection: 1
 --- !u!114 &8250884677714049385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,3 +167,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   counterForm: 0
   hitForce: 5
+--- !u!114 &4262536302563803169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8250884677714049388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e687e48d2a9614940a3334efb6ba4806, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGrounded: 0
+  isNextGroundExpected: 0
+  isBlocked: 0
+  spriteRenderer: {fileID: 0}
+  blinkDuration: 0.1
+  baseMoveSpeed: 100
+  jumpForce: 300
+  formData: {fileID: 11400000, guid: 5779bcd095ca24a8885c29d57c0ad573, type: 2}
+  isHitCounting: 0
+  hitCounter: 0
+  isBlinking: 0
+  blinkCounter: 0
+  maxSpeed: 0
