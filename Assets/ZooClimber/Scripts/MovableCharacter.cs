@@ -35,6 +35,7 @@ namespace ZooClimber.Scripts
 
         [SerializeField] protected FormData formData;
 
+        public bool IsInvincible => isHitCounting;
         [SerializeField] bool isHitCounting;
         [SerializeField] float hitCounter;
         

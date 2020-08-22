@@ -55,9 +55,7 @@ namespace ZooClimber.Scripts
         void OnPlayerHit(PlayerController playerController)
         {
             Debug.Log($"\"{playerController.gameObject.name}\" collided with \"{gameObject.name}\"");
-            playerController.Hit(transform.position, hitForce);
-            
-            GameManager.Instance.PlayerHp -= damage;
+            playerController.Hit(transform.position, hitForce, damage);
         }
     }
 }

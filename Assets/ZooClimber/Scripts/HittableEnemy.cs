@@ -5,6 +5,7 @@ namespace ZooClimber.Scripts
     public class HittableEnemy : MonoBehaviour
     {
         [SerializeField] PlayerCharacter.PlayerForm counterForm;
+        [SerializeField] int damage = 1;
         [SerializeField] float hitForce = 5;
         
         private void OnCollisionEnter2D(Collision2D other)
@@ -34,16 +35,12 @@ namespace ZooClimber.Scripts
         void OnPlayerHit(PlayerController playerController)
         {
             Debug.Log($"\"{playerController.gameObject.name}\" collided with \"{gameObject.name}\"");
-            playerController.Hit(transform.position, hitForce);
+            playerController.Hit(transform.position, hitForce, damage);
 
             if (counterForm == PlayerCharacter.PlayerForm.All || 
                 counterForm == playerController.PlayerCharacter.ActivePlayerForm)
             {
                 GameManager.Instance.GameOver();
-            }
-            else
-            {
-                GameManager.Instance.PlayerHp--;
             }
         }
     }

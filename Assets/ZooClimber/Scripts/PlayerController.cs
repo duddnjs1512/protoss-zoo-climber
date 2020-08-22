@@ -22,11 +22,16 @@ namespace ZooClimber.Scripts
             Debug.Assert(playerCharacter != null);
         }
 
-        public void Hit(Vector3 hitSourcePos, float hitForce)
+        public void Hit(Vector3 hitSourcePos, float hitForce, int damage)
         {
             isHit = true;
             this.hitForce = hitForce;
             this.hitSourcePos = hitSourcePos;
+
+            if (!playerCharacter.IsInvincible)
+            {
+                GameManager.Instance.PlayerHp -= damage;
+            }
         }
 
         protected override void UpdateController()
