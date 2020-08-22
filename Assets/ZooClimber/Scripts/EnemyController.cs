@@ -23,6 +23,8 @@ namespace ZooClimber.Scripts
 
         protected override void OnFlip()
         {
+            base.OnFlip();
+            
             if (enemyForm == EnemyForm.Cat)
             {
                 CatOnFlip();

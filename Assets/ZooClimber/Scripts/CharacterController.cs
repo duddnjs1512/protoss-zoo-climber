@@ -4,7 +4,9 @@ namespace ZooClimber.Scripts
 {
     public class CharacterController : MonoBehaviour
     {
-        public enum FaceDirection
+        const float FLIP_INTERVAL = 1f;
+        
+        protected enum FaceDirection
         {
             Left = -1,
             Right = 1
@@ -18,6 +20,9 @@ namespace ZooClimber.Scripts
 
         bool isPlayer;
         bool isEnemy;
+
+        [SerializeField] float flipCounter;
+        [SerializeField] bool isFlipCounting;
         
         void Awake()
         {
@@ -40,8 +45,21 @@ namespace ZooClimber.Scripts
 
         protected virtual void UpdateController()
         {
+            Debug.Log(flipCounter);
+
             if (movable)
             {
+                if (isFlipCounting)
+                {
+                    flipCounter += Time.deltaTime;
+                }
+
+                if (isFlipCounting && flipCounter >= FLIP_INTERVAL)
+                {
+                    isFlipCounting = false;
+                    flipCounter = 0;
+                }
+
                 if (CanFlip() && faceDirection == FaceDirection.Left && movable.IsGrounded)
                 {
                     movable.Rigidbody2D.velocity = Vector2.zero;
@@ -65,6 +83,11 @@ namespace ZooClimber.Scripts
 
         bool CanFlip()
         {
+            if (isFlipCounting)
+            {
+                return false;
+            }
+            
             if (isPlayer)
             {
                 return movable.IsBlocked;
@@ -80,7 +103,8 @@ namespace ZooClimber.Scripts
 
         protected virtual void OnFlip()
         {
-            // do nothing
+            flipCounter = 0;
+            isFlipCounting = true;
         }
         
         protected virtual void UpdateCharacter()

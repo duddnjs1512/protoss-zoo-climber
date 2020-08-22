@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: cat_data
   m_EditorClassIdentifier: 
   id: cat
-  speed: 1.5
+  speed: 2
   sprite: {fileID: 21300000, guid: 023a71e96d7be403ca8099a463639195, type: 3}
