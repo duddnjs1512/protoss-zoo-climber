@@ -4,6 +4,7 @@ namespace ZooClimber.Scripts
 {
     public class HittableObject : MonoBehaviour
     {
+        [SerializeField] int damage = 1;
         [SerializeField] float hitForce = 5;
 
         void OnTriggerEnter2D(Collider2D other)
@@ -35,7 +36,7 @@ namespace ZooClimber.Scripts
             Debug.Log($"\"{playerController.gameObject.name}\" collided with \"{gameObject.name}\"");
             playerController.Hit(transform.position, hitForce);
             
-            GameManager.Instance.PlayerHp--;
+            GameManager.Instance.PlayerHp -= damage;
         }
     }
 }

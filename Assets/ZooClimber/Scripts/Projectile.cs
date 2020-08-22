@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace ZooClimber.Scripts
 {
@@ -11,6 +10,7 @@ namespace ZooClimber.Scripts
         [SerializeField] float speed;
         [SerializeField] Vector2 direction;
 
+        [SerializeField] int damage = 1;
         [SerializeField] float hitForce = 5;
 
         void Awake()
@@ -56,6 +56,8 @@ namespace ZooClimber.Scripts
         {
             Debug.Log($"\"{playerController.gameObject.name}\" collided with \"{gameObject.name}\"");
             playerController.Hit(transform.position, hitForce);
+            
+            GameManager.Instance.PlayerHp -= damage;
         }
     }
 }
