@@ -34,7 +34,7 @@ namespace ZooClimber.Scripts
             
             SetFloor(1);
             SetTimer(60);
-            SetHeart(5);
+            SetHeart(GameManager.Instance.PlayerHp);
         }
 
         public void SetHeart(int value)

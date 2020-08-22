@@ -48,6 +48,13 @@ namespace ZooClimber.Scripts
         public LayerMask WallMask => wallMask;
         [SerializeField] LayerMask wallMask;
 
+        public int PlayerHp
+        {
+            get => playerHp;
+            set => playerHp = value;
+        }
+        int playerHp = 5;
+
         public void Bind()
         {
             if (playerCharacter == null)
