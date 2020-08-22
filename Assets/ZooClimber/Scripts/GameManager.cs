@@ -14,7 +14,9 @@ namespace ZooClimber.Scripts
     
     public class GameManager : MonoBehaviour
     {
+        public const int MIN_PLAYER_HP = 0;
         public const int MAX_PLAYER_HP = 5;
+        public const int MIN_FLOOR = 1;
         public const float WORLD_MIN_POSITION_X = -20f;
         public const float WORLD_MAX_POSITION_X = 20f;
         public const string SPIKE_LAYER_NAME = "Spike";
@@ -70,6 +72,22 @@ namespace ZooClimber.Scripts
             }
         }
         int playerHp = 5;
+
+        public int CurrentFloor
+        {
+            get => currentFloor;
+            set
+            {
+                currentFloor = value;
+                if (currentFloor < 1)
+                {
+                    currentFloor = MIN_FLOOR;
+                }
+
+                UIManager.Instance.SetFloor(value);
+            }
+        }
+        private int currentFloor;
 
         public void Bind()
         {

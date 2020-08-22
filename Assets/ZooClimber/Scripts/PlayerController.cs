@@ -56,6 +56,8 @@ namespace ZooClimber.Scripts
                 playerCharacter.RandomTransform();
                 isTransformClicked = false;
             }
+
+            GameManager.Instance.CurrentFloor = Mathf.FloorToInt(playerCharacter.transform.position.y * 0.2f) + 1;
         }
     }
 }
