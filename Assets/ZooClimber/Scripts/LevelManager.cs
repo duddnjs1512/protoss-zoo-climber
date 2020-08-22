@@ -15,7 +15,7 @@ namespace ZooClimber.Scripts
                     instance = FindObjectOfType<LevelManager>();
                     if (instance == null)
                     {
-                        var go = new GameObject("Game Manager");
+                        var go = new GameObject("Level Manager");
                         instance = go.AddComponent<LevelManager>();
                     }
                 }
@@ -34,7 +34,8 @@ namespace ZooClimber.Scripts
             DontDestroyOnLoad(gameObject);
         }
 
-        [SerializeField] string defaultSceneToLoad;
+        [SerializeField] string mapSceneName;
+        [SerializeField] string uiSceneName;
         [SerializeField] string playerPosTag;
         [SerializeField] GameObject playerPrefab;
         
@@ -45,10 +46,14 @@ namespace ZooClimber.Scripts
 
         IEnumerator LoadLevelAsync()
         {
-            var asyncLoad = SceneManager.LoadSceneAsync(defaultSceneToLoad);
+            var mapSceneLoad = SceneManager.LoadSceneAsync(mapSceneName, LoadSceneMode.Additive);
+            while (!mapSceneLoad.isDone)
+            {
+                yield return null;
+            }
 
-            // Wait until the asynchronous scene fully loads
-            while (!asyncLoad.isDone)
+            var uiSceneLoad = SceneManager.LoadSceneAsync(uiSceneName, LoadSceneMode.Additive);
+            while (!uiSceneLoad.isDone)
             {
                 yield return null;
             }

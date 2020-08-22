@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1bf597e5e3a645309178bf4083e3bb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultSceneToLoad: map
+  mapSceneName: map
+  uiSceneName: ui
   playerPosTag: Player
   playerPrefab: {fileID: 3161438839856061455, guid: e2336da3d12cd49b582c2403ba0069c2, type: 3}
