@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Security.Cryptography;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace ZooClimber.Scripts
@@ -13,6 +14,7 @@ namespace ZooClimber.Scripts
     
     public class GameManager : MonoBehaviour
     {
+        public const int MAX_PLAYER_HP = 5;
         public const float WORLD_MIN_POSITION_X = -20f;
         public const float WORLD_MAX_POSITION_X = 20f;
         public const string SPIKE_LAYER_NAME = "Spike";
@@ -51,7 +53,21 @@ namespace ZooClimber.Scripts
         public int PlayerHp
         {
             get => playerHp;
-            set => playerHp = value;
+            set
+            {
+                playerHp = value;
+                if (playerHp < 0)
+                {
+                    playerHp = 0;
+                }
+                
+                UIManager.Instance.SetHeart(value);
+
+                if (playerHp <= 0)
+                {
+                    GameOver();
+                }
+            }
         }
         int playerHp = 5;
 
@@ -62,6 +78,16 @@ namespace ZooClimber.Scripts
                 playerCharacter = FindObjectOfType<PlayerCharacter>();
                 Debug.Assert(playerCharacter != null);
             }
+        }
+
+        public void Reset()
+        {
+            if (PlayerCharacter != null)
+            {
+                Destroy(playerCharacter.gameObject);
+            }
+            
+            playerHp = MAX_PLAYER_HP;
         }
 
         void Awake()
@@ -79,7 +105,8 @@ namespace ZooClimber.Scripts
             Debug.Log("Game Over");
             
             SoundManager.Instance.PlayPlayerDie();
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            
+            LevelManager.Instance.StartLevel();
             
             Init();
         }

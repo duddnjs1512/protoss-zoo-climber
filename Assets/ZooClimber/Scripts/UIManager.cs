@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using TMPro;
 
 namespace ZooClimber.Scripts
@@ -28,7 +29,7 @@ namespace ZooClimber.Scripts
         [SerializeField] TextMeshProUGUI floorIndicator;
         [SerializeField] TextMeshProUGUI scoreIndicator;
 
-        void Start()
+        public void Bind()
         {
             canvas.worldCamera = FindObjectOfType<Camera>();
             

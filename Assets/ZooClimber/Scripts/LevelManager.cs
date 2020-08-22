@@ -41,12 +41,19 @@ namespace ZooClimber.Scripts
         
         void Start()
         {
+            StartLevel();
+        }
+
+        public void StartLevel()
+        {
             StartCoroutine(LoadLevelAsync());
         }
 
         IEnumerator LoadLevelAsync()
         {
-            var mapSceneLoad = SceneManager.LoadSceneAsync(mapSceneName, LoadSceneMode.Additive);
+            GameManager.Instance.Reset();
+            
+            var mapSceneLoad = SceneManager.LoadSceneAsync(mapSceneName, LoadSceneMode.Single);
             while (!mapSceneLoad.isDone)
             {
                 yield return null;
@@ -68,6 +75,7 @@ namespace ZooClimber.Scripts
             player.transform.position = startPos;
 
             GameManager.Instance.Bind();
+            UIManager.Instance.Bind();
         }
     }
 }

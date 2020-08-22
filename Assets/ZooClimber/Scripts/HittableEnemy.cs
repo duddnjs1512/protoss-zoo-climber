@@ -41,6 +41,10 @@ namespace ZooClimber.Scripts
             {
                 GameManager.Instance.GameOver();
             }
+            else
+            {
+                GameManager.Instance.PlayerHp--;
+            }
         }
     }
 }

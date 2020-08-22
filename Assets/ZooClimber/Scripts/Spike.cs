@@ -34,6 +34,8 @@ namespace ZooClimber.Scripts
         {
             Debug.Log($"\"{playerController.gameObject.name}\" collided with \"{gameObject.name}\"");
             playerController.Hit(transform.position, hitForce);
+            
+            GameManager.Instance.PlayerHp--;
         }
     }
 }
