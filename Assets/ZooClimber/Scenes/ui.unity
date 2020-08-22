@@ -294,5 +294,53 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3348670429400571098, guid: 00999c1cf90ba3045b699f8c1430fe9f, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3348670429400571098, guid: 00999c1cf90ba3045b699f8c1430fe9f, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5619658907923511217, guid: 00999c1cf90ba3045b699f8c1430fe9f, type: 3}
+      propertyPath: m_text
+      value: 1F
+      objectReference: {fileID: 0}
+    - target: {fileID: 5619658907923511217, guid: 00999c1cf90ba3045b699f8c1430fe9f, type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5619658907923511217, guid: 00999c1cf90ba3045b699f8c1430fe9f, type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5619658907923511217, guid: 00999c1cf90ba3045b699f8c1430fe9f, type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7747024939830560394, guid: 00999c1cf90ba3045b699f8c1430fe9f, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7747024939830560394, guid: 00999c1cf90ba3045b699f8c1430fe9f, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8329973667658035286, guid: 00999c1cf90ba3045b699f8c1430fe9f, type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8329973667658035286, guid: 00999c1cf90ba3045b699f8c1430fe9f, type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8329973667658035286, guid: 00999c1cf90ba3045b699f8c1430fe9f, type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8329973667658035286, guid: 00999c1cf90ba3045b699f8c1430fe9f, type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00999c1cf90ba3045b699f8c1430fe9f, type: 3}
