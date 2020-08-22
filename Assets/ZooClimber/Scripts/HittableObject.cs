@@ -2,7 +2,7 @@
 
 namespace ZooClimber.Scripts
 {
-    public class Spike : MonoBehaviour
+    public class HittableObject : MonoBehaviour
     {
         [SerializeField] float hitForce = 5;
 
