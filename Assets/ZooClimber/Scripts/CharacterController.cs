@@ -56,12 +56,16 @@ namespace ZooClimber.Scripts
                     movable.Rigidbody2D.velocity = Vector2.zero;
                     faceDirection = FaceDirection.Right;
                     formSprite.flipX = false;
+                    
+                    OnFlip();
                 }
                 else if (CanFlip() && faceDirection == FaceDirection.Right && movable.IsGrounded)
                 {
                     movable.Rigidbody2D.velocity = Vector2.zero;
                     faceDirection = FaceDirection.Left;
                     formSprite.flipX = true;
+
+                    OnFlip();
                 }
             }
         }
@@ -79,6 +83,10 @@ namespace ZooClimber.Scripts
             }
 
             return false;
+        }
+
+        void OnFlip()
+        {
         }
         
         protected virtual void UpdateCharacter()
