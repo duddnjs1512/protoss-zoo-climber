@@ -45,18 +45,20 @@ namespace ZooClimber.Scripts
                 if (CanFlip() && faceDirection == FaceDirection.Left && movable.IsGrounded)
                 {
                     movable.Rigidbody2D.velocity = Vector2.zero;
-                    faceDirection = FaceDirection.Right;
-                    formSprite.flipX = false;
                     
                     OnFlip();
+
+                    faceDirection = FaceDirection.Right;
+                    formSprite.flipX = false;
                 }
                 else if (CanFlip() && faceDirection == FaceDirection.Right && movable.IsGrounded)
                 {
                     movable.Rigidbody2D.velocity = Vector2.zero;
+                    
+                    OnFlip();
+
                     faceDirection = FaceDirection.Left;
                     formSprite.flipX = true;
-
-                    OnFlip();
                 }
             }
         }
