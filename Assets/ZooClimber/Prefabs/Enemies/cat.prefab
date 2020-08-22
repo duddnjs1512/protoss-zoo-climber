@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8250884677714049386}
   - component: {fileID: 8250884677714049385}
   - component: {fileID: 3008505755279496880}
-  - component: {fileID: 9207579393586791942}
+  - component: {fileID: 4262536302563803169}
   m_Layer: 0
   m_Name: cat
   m_TagString: Untagged
@@ -135,7 +135,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   counterForm: 1
-  damage: 1
   hitForce: 5
 --- !u!70 &3008505755279496880
 CapsuleCollider2D:
@@ -153,7 +152,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0.0072672144, y: -0.19579938}
   m_Size: {x: 1.7238109, y: 1.4340825}
   m_Direction: 1
---- !u!114 &9207579393586791942
+--- !u!114 &4262536302563803169
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -162,7 +161,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8250884677714049388}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424a7292a51f120419ad450b0c38209b, type: 3}
+  m_Script: {fileID: 11500000, guid: e687e48d2a9614940a3334efb6ba4806, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isGrounded: 0
@@ -172,7 +171,7 @@ MonoBehaviour:
   blinkDuration: 0.1
   baseMoveSpeed: 100
   jumpForce: 300
-  formData: {fileID: 11400000, guid: a720368cc50ab5e4bb2b84bf295595b5, type: 2}
+  formData: {fileID: 11400000, guid: 5779bcd095ca24a8885c29d57c0ad573, type: 2}
   isHitCounting: 0
   hitCounter: 0
   isBlinking: 0
