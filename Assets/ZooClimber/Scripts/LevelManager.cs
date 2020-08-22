@@ -51,8 +51,6 @@ namespace ZooClimber.Scripts
 
         IEnumerator LoadLevelAsync()
         {
-            GameManager.Instance.Reset();
-            
             var mapSceneLoad = SceneManager.LoadSceneAsync(mapSceneName, LoadSceneMode.Single);
             while (!mapSceneLoad.isDone)
             {
@@ -64,6 +62,8 @@ namespace ZooClimber.Scripts
             {
                 yield return null;
             }
+
+            GameManager.Instance.Reset();
 
             var playerPos = GameObject.FindGameObjectWithTag(playerPosTag);
             Debug.Assert(playerPos != null);

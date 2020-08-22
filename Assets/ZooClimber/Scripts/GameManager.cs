@@ -1,4 +1,5 @@
-﻿using System.Security.Cryptography;
+﻿using System;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -14,9 +15,9 @@ namespace ZooClimber.Scripts
     
     public class GameManager : MonoBehaviour
     {
-        public const int MIN_PLAYER_HP = 0;
         public const int MAX_PLAYER_HP = 5;
         public const int MIN_FLOOR = 1;
+        public const float MAX_TIMER = 60f;
         public const float WORLD_MIN_POSITION_X = -20f;
         public const float WORLD_MAX_POSITION_X = 20f;
         public const string SPIKE_LAYER_NAME = "Spike";
@@ -79,7 +80,7 @@ namespace ZooClimber.Scripts
             set
             {
                 currentFloor = value;
-                if (currentFloor < 1)
+                if (currentFloor < MIN_FLOOR)
                 {
                     currentFloor = MIN_FLOOR;
                 }
@@ -87,7 +88,26 @@ namespace ZooClimber.Scripts
                 UIManager.Instance.SetFloor(value);
             }
         }
-        private int currentFloor;
+        int currentFloor;
+
+        bool isGameStarted;
+
+        public float CurrentTimer
+        {
+            get => currentTimer;
+            set
+            {
+                currentTimer = value;
+                if (currentTimer < 0)
+                {
+                    currentTimer = 0;
+                    GameOver();
+                }
+                
+                UIManager.Instance.SetTimer(Mathf.FloorToInt(value));
+            }
+        }
+        float currentTimer;
 
         public void Bind()
         {
@@ -105,7 +125,10 @@ namespace ZooClimber.Scripts
                 Destroy(playerCharacter.gameObject);
             }
             
-            playerHp = MAX_PLAYER_HP;
+            PlayerHp = MAX_PLAYER_HP;
+            
+            CurrentTimer = MAX_TIMER;
+            isGameStarted = true;
         }
 
         void Awake()
@@ -118,8 +141,18 @@ namespace ZooClimber.Scripts
             DontDestroyOnLoad(gameObject);
         }
 
+        void Update()
+        {
+            if (isGameStarted)
+            {
+                CurrentTimer -= Time.deltaTime;
+            }
+        }
+
         public void GameOver()
         {
+            isGameStarted = false;
+            
             Debug.Log("Game Over");
             
             SoundManager.Instance.PlayPlayerDie();

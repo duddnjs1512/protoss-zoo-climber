@@ -32,10 +32,6 @@ namespace ZooClimber.Scripts
         public void Bind()
         {
             canvas.worldCamera = FindObjectOfType<Camera>();
-            
-            SetFloor(1);
-            SetTimer(60);
-            SetHeart(GameManager.Instance.PlayerHp);
         }
 
         public void SetHeart(int value)
