@@ -4,28 +4,17 @@ namespace ZooClimber.Scripts
 {
     public class CharacterController : MonoBehaviour
     {
-        public enum EnemyForm
-        {
-            None = -1,
-            Snake = 0,
-            Lion = 1,
-            Eagle = 2,
-            Cat = 3
-        }
-
         public enum FaceDirection
         {
             Left = -1,
             Right = 1
         }
 
-        [SerializeField] EnemyForm enemyForm;
-        [SerializeField] SpriteRenderer formSprite;
-
         public Vector2 FaceDirectionToVector => faceDirection == FaceDirection.Left ? Vector2.left : Vector2.right;
         [SerializeField] protected FaceDirection faceDirection = FaceDirection.Right;
         
         protected MovableCharacter movable;
+        SpriteRenderer formSprite;
 
         bool isPlayer;
         bool isEnemy;
@@ -33,6 +22,8 @@ namespace ZooClimber.Scripts
         void Awake()
         {
             movable = GetComponent<MovableCharacter>();
+            formSprite = GetComponent<SpriteRenderer>();
+            
             isPlayer = movable is PlayerCharacter;
             isEnemy = !isPlayer;
         }
@@ -85,8 +76,9 @@ namespace ZooClimber.Scripts
             return false;
         }
 
-        void OnFlip()
+        protected virtual void OnFlip()
         {
+            // do nothing
         }
         
         protected virtual void UpdateCharacter()
