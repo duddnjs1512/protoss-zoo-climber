@@ -120,6 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22c9e664661a44a1db1111bab40defb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyForm: 3
   formSprite: {fileID: 8250884677714049391}
   faceDirection: 1
 --- !u!114 &8250884677714049385
@@ -135,6 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   counterForm: 1
+  damage: 1
   hitForce: 5
 --- !u!70 &3008505755279496880
 CapsuleCollider2D:
