@@ -84,10 +84,25 @@ namespace ZooClimber.Scripts
                     currentFloor = MIN_FLOOR;
                 }
 
-                UIManager.Instance.SetFloor(value);
+                if (currentFloor > maxFloor)
+                {
+                    MaxFloor = currentFloor;
+                }
             }
         }
         int currentFloor;
+
+        public int MaxFloor
+        {
+            get => maxFloor;
+            set
+            {
+                maxFloor = value;
+                
+                UIManager.Instance.SetFloor(value);
+            }
+        }
+        int maxFloor;
 
         public void Bind()
         {
