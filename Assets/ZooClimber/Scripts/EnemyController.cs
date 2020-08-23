@@ -19,6 +19,7 @@ namespace ZooClimber.Scripts
             Down = 1
         }
 
+        public EnemyForm Form => enemyForm;
         [SerializeField] EnemyForm enemyForm;
 
         protected override void OnFlip()

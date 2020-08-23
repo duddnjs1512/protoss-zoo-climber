@@ -42,6 +42,8 @@ namespace ZooClimber.Scripts
         [SerializeField] bool isBlinking;
         [SerializeField] float blinkCounter;
         [SerializeField] float maxSpeed;
+
+        bool isEagle;
         
         void Awake()
         {
@@ -49,6 +51,8 @@ namespace ZooClimber.Scripts
             collider2d = GetComponent<Collider2D>();
             
             maxSpeed = baseMoveSpeed * formData.speed;
+
+            isEagle = GetComponent<EnemyController>()?.Form == EnemyController.EnemyForm.Eagle;
         }
 
         public void Move(float horizontalMove, bool isJumped, bool isHit, Vector3 hitSourcePos, float hitForce)
@@ -159,6 +163,24 @@ namespace ZooClimber.Scripts
             {
                 rigidbody2d.velocity = new Vector2(horizontalMove * maxSpeed, rigidbody2d.velocity.y);
             }
+        }
+        
+        void OnDrawGizmos()
+        {
+            if (!isEagle)
+            {
+                return;
+            }
+
+            Gizmos.color = Color.red;
+            var border = CalculateHuntingZone();
+            Gizmos.DrawWireCube(transform.position + Vector3.up, new Vector3(border.x * 2, border.y * 2, 1));
+        }
+        
+        Vector2 CalculateHuntingZone()
+        {
+            var t = new Vector2(40, 2.5f);
+            return t;
         }
     }
 }
