@@ -17,7 +17,6 @@ namespace ZooClimber.Scripts
     {
         public const int MAX_PLAYER_HP = 5;
         public const int MIN_FLOOR = 1;
-        public const float MAX_TIMER = 60f;
         public const float WORLD_MIN_POSITION_X = -20f;
         public const float WORLD_MAX_POSITION_X = 20f;
         public const string SPIKE_LAYER_NAME = "Spike";
@@ -90,25 +89,6 @@ namespace ZooClimber.Scripts
         }
         int currentFloor;
 
-        bool isGameStarted;
-
-        public float CurrentTimer
-        {
-            get => currentTimer;
-            set
-            {
-                currentTimer = value;
-                if (currentTimer < 0)
-                {
-                    currentTimer = 0;
-                    GameOver();
-                }
-                
-                UIManager.Instance.SetTimer(Mathf.FloorToInt(value));
-            }
-        }
-        float currentTimer;
-
         public void Bind()
         {
             if (playerCharacter == null)
@@ -126,9 +106,6 @@ namespace ZooClimber.Scripts
             }
             
             PlayerHp = MAX_PLAYER_HP;
-            
-            CurrentTimer = MAX_TIMER;
-            isGameStarted = true;
         }
 
         void Awake()
@@ -141,18 +118,8 @@ namespace ZooClimber.Scripts
             DontDestroyOnLoad(gameObject);
         }
 
-        void Update()
-        {
-            if (isGameStarted)
-            {
-                CurrentTimer -= Time.deltaTime;
-            }
-        }
-
         public void GameOver()
         {
-            isGameStarted = false;
-            
             Debug.Log("Game Over");
             
             SoundManager.Instance.PlayPlayerDie();

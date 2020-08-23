@@ -51,10 +51,5 @@ namespace ZooClimber.Scripts
         {
             floorIndicator.SetText($"{value.ToString()}F");
         }
-
-        public void SetTimer(int value)
-        {
-            scoreIndicator.SetText($"{value.ToString()}");
-        }
     }
 }
