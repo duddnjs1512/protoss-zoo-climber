@@ -5,6 +5,8 @@ namespace ZooClimber.Scripts
     [RequireComponent(typeof (PlayerCharacter))]
     public class PlayerController : CharacterController
     {
+        const float EXTRA_FLOOR_Y_POSITION_MARGIN = 0.2f;
+
         [SerializeField] bool isJumpButtonClicked;
         [SerializeField] bool isTransformClicked;
         [SerializeField] bool isFreeMove;
@@ -62,7 +64,7 @@ namespace ZooClimber.Scripts
                 isTransformClicked = false;
             }
 
-            GameManager.Instance.CurrentFloor = Mathf.FloorToInt(playerCharacter.transform.position.y * 0.2f) + 1;
+            GameManager.Instance.CurrentFloor = Mathf.FloorToInt((playerCharacter.transform.position.y + EXTRA_FLOOR_Y_POSITION_MARGIN) * 0.2f) + 1;
         }
     }
 }
